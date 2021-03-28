@@ -11,9 +11,9 @@ const gameSchema = new schema({
         required: true
     
     },
-    demo: String,
+    url: String,
 
-    price: Number
+    price: String
 });
 
 module.exports= Game=mongoose.model("game", gameSchema);
