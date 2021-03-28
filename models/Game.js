@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
 const gameSchema = new schema({
+
   title: {
     type: String,
     required: true,
@@ -15,6 +16,7 @@ const gameSchema = new schema({
   url: String,
 
   price: Number,
+
 });
 
 module.exports = Game = mongoose.model("game", gameSchema);
