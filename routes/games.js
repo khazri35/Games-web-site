@@ -17,7 +17,7 @@ const controller = require("../controllers/game.controllers")
 router.post('/', controller.addgame )
 
 
-//get all contact
+//get all game
 // @GET method
 // @description get all game
 // @path http://localhost:5000/api/game
