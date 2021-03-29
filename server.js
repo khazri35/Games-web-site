@@ -1,7 +1,8 @@
 
-
+console.clear();
 // require express
 const express= require('express');
+const morgan= require('morgan');
 // instance express
 const app = express();
 // require dotenv & config
@@ -13,6 +14,9 @@ const PORT= process.env.PORT;
 const dbConnect= require("./config/connectDB");
 // DB connect
 dbConnect();
+
+// middleware morgan
+app.use(morgan('common'));
 // middleware body parse
 app.use(express.json());
 // route
