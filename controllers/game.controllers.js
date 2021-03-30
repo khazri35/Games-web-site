@@ -1,4 +1,5 @@
-
+// require model game
+const Game= require("../models/Game");
 // add game
 const addgame =  async (req, res)=>{
     try {
@@ -54,7 +55,7 @@ const deletegame=async(req, res)=>{
      }
 }
 
-//  update one game
+//  update game
 const updategame= async(req, res)=>{
     try {
     const result= await Game.updateOne(

@@ -6,7 +6,7 @@ const router = express.Router();
 const Game = require("../models/User");
 // require controllers
 const controller = require("../controllers/user.controllers");
-//post game
+//post user
 
 // @POST method
 // @description post a user
@@ -22,21 +22,21 @@ router.post("/", controller.adduser);
 // @data no data
 router.get("/", controller.getusers);
 
-//get contact by id
+//get user by id
 // @GET method
 // @description get one user
 // @path http://localhost:5000/api/user/:id
 // @data params _id
 router.get("/:id", controller.getuser);
 
-//delete contact
+//delete user
 // @DELETE method
 // @description delete one user
 // @path http://localhost:5000/api/user/:id
 // @data params _id
 router.delete("/:id", controller.deleteuser);
 
-//update contact
+//update user
 // @PUT method
 // @description update one user
 // @path http://localhost:5000/api/user/:id
