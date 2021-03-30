@@ -21,6 +21,7 @@ app.use(express.json());
 // route
 app.use("/api/game", require("./routes/games"));
 app.use("/api/user", require("./routes/users"));
+app.use("/api/panel", require("./routes/panels"));
 // create server
 app.listen(PORT, (error) => {
   error
