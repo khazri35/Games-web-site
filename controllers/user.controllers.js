@@ -1,3 +1,5 @@
+// require model User
+const User= require('../models/User');
 // add user
 const adduser = async (req, res) => {
   try {
