@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const panelSchema = new Schema({
   title: String,
@@ -8,6 +8,6 @@ const panelSchema = new Schema({
   quantity: Number,
 
   price: Number,
-});
+})
 
-module.exports = Panel = mongoose.model("panel", panelSchema);
+module.exports = Panel = mongoose.model('panel', panelSchema)
