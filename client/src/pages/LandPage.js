@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react'
 
 const LandPage = () => {
   return (
-    <div
-      id="carouselExampleIndicators"
-      class="carousel slide"
+    <div>
+      id="carouselExampleIndicators" class="carousel slide"
       data-bs-ride="carousel"
-    ></div>
-  );
-};
+    </div>
+  )
+}
 
-export default LandPage;
+export default LandPage

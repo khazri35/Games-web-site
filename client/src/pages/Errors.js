@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Errors = () => {
-  return <div>Errors Errors</div>;
-};
+  return <div>Errors</div>
+}
 
-export default Errors;
+export default Errors
