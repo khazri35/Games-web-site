@@ -1,36 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login, videErrors } from "../JS/actions/user";
-import Errors from "./Errors";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, videErrors } from '../JS/actions/user'
+
+import { Link } from 'react-router-dom'
+import Errors from './Errors'
 
 const SignIn = ({ history }) => {
-  const [user, setuser] = useState({});
+  const [user, setuser] = useState({})
 
-  const dispatch = useDispatch();
-  const errors = useSelector((state) => state.userReducer.errors);
-  console.log(errors);
+  const dispatch = useDispatch()
+  const errors = useSelector((state) => state.userReducer.errors)
+  console.log(errors)
   const handleChange = (e) => {
-    setuser({ ...user, [e.target.name]: e.target.value });
-  };
+    setuser({ ...user, [e.target.name]: e.target.value })
+  }
   useEffect(() => {
     return () => {
-      dispatch(videErrors());
-    };
-  }, []);
+      dispatch(videErrors())
+    }
+  }, [])
 
   return (
     <div className="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
       <form>
         <div class="mb-3">
-          <label class="form-label">Email address</label>{" "}
+          <label class="form-label">Email address</label>{' '}
           <input
             class="form-control"
             type="text"
             name="email"
             onChange={handleChange}
             placeholder="Enter a valid email address"
-          />{" "}
+          />{' '}
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">
@@ -42,7 +43,7 @@ const SignIn = ({ history }) => {
             name="password"
             onChange={handleChange}
             placeholder="Enter password"
-          />{" "}
+          />{' '}
         </div>
         <button
           type="submit"
@@ -50,16 +51,16 @@ const SignIn = ({ history }) => {
           onClick={() => dispatch(login(user, history))}
         >
           SignIn
-        </button>{" "}
+        </button>{' '}
       </form>
       <div className="row mb-4 px-3">
-        {" "}
+        {' '}
         <small className="font-weight-bold">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link to="/signup">
             <a className="text-danger ">SignUP</a>
           </Link>
-        </small>{" "}
+        </small>
       </div>
       <div className="row mb-4 px-3">
         <div className="facebook text-center mr-3">
@@ -73,7 +74,7 @@ const SignIn = ({ history }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

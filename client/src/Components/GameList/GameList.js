@@ -18,7 +18,7 @@ const GameList = () => {
         <h2>spinner</h2>
       ) : (
         listGame.map((el) => <GameCard game={el} key={el._id} />)
-      )}{' '}
+      )}
     </div>
   )
 }
