@@ -1,21 +1,21 @@
 // require model game
-const Game = require("../models/Game")
+const Game = require('../models/Game')
 // add game
 const addgame = async (req, res) => {
   try {
     const newGame = new Game({ ...req.body })
     // handling error for title & type
     if (!newGame.title || !newGame.type) {
-      res.status(400).send({ message: "title and type are required" })
+      res.status(400).send({ message: 'title and type are required' })
       return
     }
     const field = await Game.findOne({ title: req.body.title })
     if (field) {
-      res.status(400).send({ message: "title already exist" })
+      res.status(400).send({ message: 'title already exist' })
       return
     }
     const result = await newGame.save()
-    res.status(200).send({ message: "title added successfully", result })
+    res.status(200).send({ message: 'title added successfully', result })
   } catch (error) {
     res.status(500).send({ message: `${error}` })
   }
@@ -24,9 +24,9 @@ const addgame = async (req, res) => {
 const getgames = async (req, res) => {
   try {
     const result = await Game.find()
-    res.status(200).send({ response: result, message: "get all games" })
+    res.status(200).send({ message: 'get all games', games: result })
   } catch (error) {
-    res.status(404).send({ message: "can not get games" })
+    res.status(404).send({ message: 'can not get games' })
   }
 }
 
@@ -34,9 +34,9 @@ const getgames = async (req, res) => {
 const getgame = async (req, res) => {
   try {
     const result = await Game.findOne({ _id: req.params.id })
-    res.status(200).send({ response: result, message: "get one game" })
+    res.status(200).send({ message: 'get one game', game: result })
   } catch (error) {
-    res.status(404).send({ message: "can not get game with this id" })
+    res.status(404).send({ message: 'can not get game with this id' })
   }
 }
 
@@ -47,12 +47,10 @@ const deletegame = async (req, res) => {
     const result = await Game.findOneAndDelete({ _id })
     // console.log(result)
     result
-      ? res
-          .status(200)
-          .send({ response: result, message: "this game is deleted" })
-      : res.send({ message: "already deleted" })
+      ? res.status(200).send({ message: 'this game is deleted', game: result })
+      : res.send({ message: 'already deleted' })
   } catch (error) {
-    res.status(404).send({ message: "can not delete this game" })
+    res.status(404).send({ message: 'can not delete this game' })
   }
 }
 
@@ -63,12 +61,9 @@ const updategame = async (req, res) => {
       { _id: req.params.id },
       { $set: { ...req.body } }
     )
-    console.log(result)
     result.nModified
-      ? res
-          .status(200)
-          .send({ response: result, message: "this game is updated" })
-      : res.send({ response: result, message: "game already updated" })
+      ? res.status(200).send({ message: 'this game is updated', game: result })
+      : res.send({ message: 'game already updated', game: result })
   } catch (error) {
     res.status(404).send({ message: `can not update this game /${error}` })
   }
