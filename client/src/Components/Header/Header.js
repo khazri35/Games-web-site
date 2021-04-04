@@ -1,5 +1,5 @@
-import React from 'react'
-import { Navbar, Nav, Container } from 'react-bootstrap'
+import React from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 const Header = () => {
   return (
@@ -13,15 +13,16 @@ const Header = () => {
               <Nav.Link href="/">
                 <i className="fas fa-shopping-cart"></i> Play-Cart
               </Nav.Link>
-              <Nav.Link href="/login">
-                <i className="fas fa-user"></i>Play-In
+              <Nav.Link href="/signup">
+                <i className="fas fa-user"></i>Sign-Up
               </Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
