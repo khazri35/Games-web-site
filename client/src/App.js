@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Home from './Components/Home/Home'
 import GameCard from './Components/GameCard/GameCard'
 import { Container } from 'react-bootstrap'
 import Errors from './pages/Errors'
@@ -19,7 +18,7 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Switch>
-            <Route path="/" component={Home} exact />
+            <Route exact path="/" component={LandPage} />
             <Route path="/game/:id" component={GameCard} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />

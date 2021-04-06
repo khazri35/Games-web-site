@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react'
+
 // import "./Profile.css";
 const Profile = () => {
   //   const user = useSelector((state) => state.userReducer.user);
 
-  return <div className="container profile"></div>;
-};
+  return <div className="container profile">profile</div>
+}
 
-export default Profile;
+export default Profile
