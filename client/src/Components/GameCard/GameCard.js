@@ -1,13 +1,29 @@
-import React from "react";
-import { Card } from "react-bootstrap";
+
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
 import Rating from "../Rating/Rating";
+
 
 const GameCard = ({ game }) => {
   return (
     <Card className="my-3 p-3 rounded">
-      <a href={`/game/${game._id}`}>
+      <Link to={`/game/${game._id}`}>
         <Card.Img src={game.image} variant="top" />
-      </a>
+      </Link>
+      <Card.Body>
+        <Link to={`/game/${game._id}`}>
+          <Card.Title as="div">
+            <strong>{game.title}</strong>
+          </Card.Title>
+        </Link>
+        <Card.Text as="div">
+          <div className="my-3">
+            {game.rating} from {game.numReviews} reviews
+          </div>
+        </Card.Text>
+        <Card.Text as="h3">${game.price}</Card.Text>
+      </Card.Body>
       <Card.Text as="div">
         <Rating value={game.rating} text={` ${game.numReviews}  reviews`} />
       </Card.Text>

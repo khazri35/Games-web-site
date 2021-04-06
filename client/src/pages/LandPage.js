@@ -20,7 +20,7 @@ const LandPage = () => {
           <h2>stanna</h2>
         ) : (
           listGames.map((game) => (
-            <Col sm={12} md={6} lg={4} xl={3}>
+            <Col key={game._id} sm={12} md={6} lg={4} xl={3}>
               <GameCard game={game} />
             </Col>
           ))
