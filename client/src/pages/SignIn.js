@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, videErrors } from '../JS/actions/user'
+import { signin } from '../JS/actions/user'
 
 import { Link } from 'react-router-dom'
-import Errors from './Errors'
 
 const SignIn = ({ history }) => {
   const [user, setuser] = useState({})
@@ -14,11 +13,11 @@ const SignIn = ({ history }) => {
   const handleChange = (e) => {
     setuser({ ...user, [e.target.name]: e.target.value })
   }
-  useEffect(() => {
-    return () => {
-      dispatch(videErrors())
-    }
-  }, [])
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(videErrors())
+  //   }
+  // }, [])
 
   return (
     <div className="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
@@ -31,7 +30,7 @@ const SignIn = ({ history }) => {
             name="email"
             onChange={handleChange}
             placeholder="Enter a valid email address"
-          />{' '}
+          />
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">
@@ -48,7 +47,7 @@ const SignIn = ({ history }) => {
         <button
           type="submit"
           className="btn btn-primary"
-          onClick={() => dispatch(login(user, history))}
+          onClick={() => dispatch(signin(user, history))}
         >
           SignIn
         </button>{' '}

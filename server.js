@@ -16,7 +16,7 @@ dbConnect()
 
 // middleware morgan
 app.use(morgan('common'))
-// middleware body parse
+// middleware global body parse
 app.use(express.json())
 // route
 app.use('/api/game', require('./routes/games'))

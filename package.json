@@ -4,7 +4,6 @@
   "description": "testproject",
   "main": "index.js",
   "scripts": {
-
     "back": "nodemon server.js",
     "front": "cd client && npm start",
     "dev": "concurrently \"npm run front\" \"npm run back\""
@@ -30,8 +29,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.0",
     "mongoose-double": "^0.0.1",
-    "morgan": "^1.10.0"
-
+    "morgan": "^1.10.0",
+    "passport-facebook": "^3.0.0"
   },
   "devDependencies": {
     "concurrently": "^6.0.0",

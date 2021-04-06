@@ -1,11 +1,13 @@
 import React from 'react'
+import { Row, Col } from 'react-bootstrap'
+import GameList from '../Components/GameList/GameList'
 
 const LandPage = () => {
   return (
-    <div>
-      id="carouselExampleIndicators" class="carousel slide"
-      data-bs-ride="carousel"
-    </div>
+    <>
+      <Row></Row>
+      <GameList />
+    </>
   )
 }
 
