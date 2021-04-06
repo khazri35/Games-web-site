@@ -1,6 +1,9 @@
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
+import Rating from "../Rating/Rating";
+
 
 const GameCard = ({ game }) => {
   return (
@@ -21,8 +24,11 @@ const GameCard = ({ game }) => {
         </Card.Text>
         <Card.Text as="h3">${game.price}</Card.Text>
       </Card.Body>
+      <Card.Text as="div">
+        <Rating value={game.rating} text={` ${game.numReviews}  reviews`} />
+      </Card.Text>
     </Card>
-  )
-}
+  );
+};
 
-export default GameCard
+export default GameCard;
