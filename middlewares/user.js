@@ -2,7 +2,6 @@ const { check, validationResult } = require('express-validator')
 
 exports.registerValidation = () => [
   check('name', 'name is required').not().isEmpty(),
-  check('lastname', 'lastname is required').not().isEmpty(),
   check('email', 'enter a valid email').isEmail(),
   check('password', 'enter a valid password').isLength({ min: 6 }),
 ]

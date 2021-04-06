@@ -1,13 +1,13 @@
 import React from 'react'
+import { Card } from 'react-bootstrap'
 
 const GameCard = ({ game }) => {
   return (
-    <div>
-      <h2>{game.title} </h2>
-      <h2>{game.type} </h2>
-      <h2>{game.url} </h2>
-      <h2>{game.price} </h2>
-    </div>
+    <Card className="my-3 p-3 rounded">
+      <a href={`/game/${game._id}`}>
+        <Card.Img src={game.image} variant="top" />
+      </a>
+    </Card>
   )
 }
 
