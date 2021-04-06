@@ -1,5 +1,6 @@
-import React from 'react'
-import { Card } from 'react-bootstrap'
+import React from "react";
+import { Card } from "react-bootstrap";
+import Rating from "../Rating/Rating";
 
 const GameCard = ({ game }) => {
   return (
@@ -7,8 +8,11 @@ const GameCard = ({ game }) => {
       <a href={`/game/${game._id}`}>
         <Card.Img src={game.image} variant="top" />
       </a>
+      <Card.Text as="div">
+        <Rating value={game.rating} text={` ${game.numReviews}  reviews`} />
+      </Card.Text>
     </Card>
-  )
-}
+  );
+};
 
-export default GameCard
+export default GameCard;
