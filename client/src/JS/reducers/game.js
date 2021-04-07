@@ -1,12 +1,12 @@
 import { GET_GAMES, LOAD_GAMES, FAIL_GAMES } from '../actionTypes/game'
 
-const intialState = {
+const initialState = {
   gameList: [],
   load: false,
   errors: null,
 }
 
-const gameReducer = (state = intialState, { type, payload }) => {
+const gameReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_GAMES:
       return { ...state, load: true }
