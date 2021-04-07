@@ -1,0 +1,3 @@
+export const LOAD_DETAILS = 'LOAD_DETAILS'
+export const GET_DETAILS = 'GET_DETAILS'
+export const FAIL_DETAILS = 'FAIL_DETAILS'
