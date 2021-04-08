@@ -7,21 +7,23 @@ import {
   LOGOUT_USER,
 } from '../actionTypes/user'
 
-export const signup = (newUser) => async (dispatch) => {
+export const signup = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER })
   try {
     let result = await axios.post('/api/user/signup', newUser)
     dispatch({ type: SIGNUP_USER, payload: result.data })
+    history.push('/profile')
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.reponse.data.errors })
   }
 }
 
-export const signin = (user) => async (dispatch) => {
+export const signin = (user, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER })
   try {
     let result = await axios.post('/api/user/signin', user)
     dispatch({ type: SIGNIN_USER, payload: result.data })
+    history.push('/profile')
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.reponse.data.errors })
   }

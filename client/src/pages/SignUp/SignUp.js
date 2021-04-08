@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 
 import { signup } from '../../JS/actions/user'
 
-// import "./SignUp.css";
-
 const SignUp = ({ history }) => {
   const [user, setuser] = useState({})
   const errors = useSelector((state) => state.userReducer.errors)
@@ -37,7 +35,7 @@ const SignUp = ({ history }) => {
           <input
             type="text"
             name="email"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={handleChange}

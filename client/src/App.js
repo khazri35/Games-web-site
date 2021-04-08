@@ -3,13 +3,14 @@ import { Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Errors from './pages/Errors'
 import LandPage from './pages/LandPage'
-import Profile from './pages/Profile/Profile'
-import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp/SignUp'
-import PrivateRoute from './router/PrivateRoute'
+
 import Footer from './Components/Footer/Footer'
 import Header from './Components/Header/Header'
 import Gamescreen from './pages/Gamescreen'
+import Cartscreen from './pages/Cartscreen'
+import Loginscreen from './pages/Loginscreen'
+import Userscreen from './pages/Userscreen'
+import Registerscreen from './pages/Registerscreen'
 
 const App = () => {
   return (
@@ -19,10 +20,11 @@ const App = () => {
         <Container>
           <Switch>
             <Route exact path="/" component={LandPage} />
+            <Route path="/signin" component={Loginscreen} />
+            <Route path="/signup" component={Registerscreen} />
+            <Route path="/profile" component={Userscreen} />
             <Route path="/game/:id" component={Gamescreen} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/signup" component={SignUp} />
-            <PrivateRoute path="/profile" component={Profile} />
+            <Route path="/cart/:id?" component={Cartscreen} />
             <Route path="/*" component={Errors} />
           </Switch>
         </Container>
