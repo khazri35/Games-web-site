@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
@@ -8,7 +8,8 @@ import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import Meta from '../Components/Meta'
 
-const Gamescreen = ({ match }) => {
+const Gamescreen = ({ history, match }) => {
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
   const detailsGame = useSelector((state) => state.gamedetails)
   const { load, errors, gameDetails } = detailsGame
@@ -16,6 +17,10 @@ const Gamescreen = ({ match }) => {
   useEffect(() => {
     dispatch(getDetails(match.params.id))
   }, [dispatch, match])
+
+  const addHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
 
   return (
     <>
@@ -30,7 +35,7 @@ const Gamescreen = ({ match }) => {
         <>
           <Meta title={gameDetails.title} />
           <Row>
-            <Col md={6}>
+            <Col md={4}>
               <Image src={gameDetails.image} alt={gameDetails.title} fluid />
             </Col>
             <Col md={3}>
@@ -46,6 +51,9 @@ const Gamescreen = ({ match }) => {
                 </ListGroup.Item>
                 <ListGroup.Item>Price:${gameDetails.price}</ListGroup.Item>
                 <ListGroup.Item>
+                  Developer: {gameDetails.publisher}
+                </ListGroup.Item>
+                <ListGroup.Item>
                   Description: {gameDetails.description}
                 </ListGroup.Item>
               </ListGroup>
@@ -60,6 +68,15 @@ const Gamescreen = ({ match }) => {
                         <strong>${gameDetails.price}</strong>
                       </Col>
                     </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Button
+                      onClick={addHandler}
+                      className="btn btn-block"
+                      type="button"
+                    >
+                      Add to cart
+                    </Button>
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
