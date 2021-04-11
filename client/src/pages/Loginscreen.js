@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-// import Message from '../Components/Message'
-// import Loader from '../Components/Loader'
 import { signin } from '../JS/actions/user'
 import FormContainer from '../Components/FormContainer'
 
@@ -45,13 +43,13 @@ const Loginscreen = ({ history }) => {
         </Form.Group>
 
         <Button type="Submit" variant="primary" onClick={submitHandler}>
-          Register
+          Sign IN
         </Button>
       </Form>
       <Row className="py-3">
         <Col>
-          Dont Have an Account?
-          <Link to="/signup">Register</Link>
+          Don't Have an Account?
+          <Link to="/signup">Sign Up</Link>
         </Col>
       </Row>
     </FormContainer>

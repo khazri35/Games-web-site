@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
 const Signup = async (req, res) => {
   try {
     //   req.body
-    const { name, lastname, email, password } = req.body
+    const { name, email, password } = req.body
 
     // check if the email is not found in the database
     const foundUser = await User.findOne({ email })
@@ -100,25 +100,26 @@ const SignIn = async (req, res) => {
 //     res.status(500).send({ message: `${error}` });
 //   }
 // };
+
 // get all users
-// const getusers = async (req, res) => {
-//   try {
-//     const result = await User.find()
-//     res.status(200).send({ response: result, message: 'get all users' })
-//   } catch (error) {
-//     res.status(404).send({ message: 'can not get users' })
-//   }
-// }
+const getusers = async (req, res) => {
+  try {
+    const result = await User.find()
+    res.status(200).send({ response: result, message: 'get all users' })
+  } catch (error) {
+    res.status(404).send({ message: 'can not get users' })
+  }
+}
 
 // get one user
-// const getuser = async (req, res) => {
-//   try {
-//     const result = await User.findOne({ _id: req.params.id })
-//     res.status(200).send({ response: result, message: 'get one user' })
-//   } catch (error) {
-//     res.status(404).send({ message: 'can not get user with this id' })
-//   }
-// }
+const getuser = async (req, res) => {
+  try {
+    const result = await User.findOne({ _id: req.params.id })
+    res.status(200).send({ response: result, message: 'get one user' })
+  } catch (error) {
+    res.status(404).send({ message: 'can not get user with this id' })
+  }
+}
 
 // delete user
 // const deleteuser = async (req, res) => {
@@ -155,8 +156,8 @@ const SignIn = async (req, res) => {
 // };
 
 module.exports = controllers = {
-  // getusers,
-  // getuser,
+  getusers,
+  getuser,
   // deleteuser,
 
   SignIn,
