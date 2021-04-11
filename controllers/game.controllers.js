@@ -1,6 +1,7 @@
 // require model game
 const Game = require('../models/Game')
 // add game
+
 const addgame = async (req, res) => {
   try {
     const newGame = new Game({ ...req.body })
@@ -21,6 +22,7 @@ const addgame = async (req, res) => {
   }
 }
 // get all games
+
 const getgames = async (req, res) => {
   try {
     const result = await Game.find()
@@ -45,7 +47,7 @@ const deletegame = async (req, res) => {
   const _id = req.params.id
   try {
     const result = await Game.findOneAndDelete({ _id })
-    // console.log(result)
+
     result
       ? res.status(200).send({ message: 'this game is deleted', game: result })
       : res.send({ message: 'already deleted' })

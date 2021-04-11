@@ -1,5 +1,6 @@
 import { GET_GAMES, LOAD_GAMES, FAIL_GAMES } from '../actionTypes/game'
 import axios from 'axios'
+
 export const getGames = () => async (dispatch) => {
   dispatch({ type: LOAD_GAMES })
   try {

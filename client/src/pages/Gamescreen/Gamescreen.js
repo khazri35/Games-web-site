@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import Rating from '../Components/Rating/Rating'
-import { getDetails } from '../JS/actions/gamedetails'
-import Loader from '../Components/Loader'
-import Message from '../Components/Message'
-import Meta from '../Components/Meta'
+import Rating from '../../Components/Rating/Rating'
+import { getDetails } from '../../JS/actions/gamedetails'
+import Loader from '../../Components/Loader'
+import Message from '../../Components/Message'
+import Meta from '../../Components/Meta'
+import './Gamescreen.css'
 
 const Gamescreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
   const detailsGame = useSelector((state) => state.gamedetails)
   const { load, errors, gameDetails } = detailsGame
-
+  console.log(detailsGame)
   useEffect(() => {
     dispatch(getDetails(match.params.id))
   }, [dispatch, match])
@@ -24,7 +25,7 @@ const Gamescreen = ({ history, match }) => {
 
   return (
     <>
-      <Link className="btn btn-dark my-3" to="/">
+      <Link className="btn btn-dark my-3 gamescreen" to="/">
         Go Back
       </Link>
       {load ? (

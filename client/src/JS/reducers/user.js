@@ -4,47 +4,57 @@ import {
   SIGNIN_USER,
   SIGNUP_USER,
   LOGOUT_USER,
+  CURRENT_USER,
 } from '../actionTypes/user'
 
 const initialState = {
   user: {},
   isAuth: false,
-  loadUser: false,
+  load: false,
   errors: [],
 }
 
 const userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_USER:
-      return { ...state, loadUser: true }
+      return { ...state, load: true }
+
     case SIGNUP_USER:
       localStorage.setItem('token', payload.token)
       return {
         ...state,
-        loadUser: false,
+        load: false,
         user: payload.user,
         isAuth: true,
-        errors: [],
+        errors: payload,
       }
+
     case SIGNIN_USER:
       localStorage.setItem('token', payload.token)
       return {
         ...state,
-        loadUser: false,
+        load: false,
         user: payload.user,
         isAuth: true,
-        errors: [],
+        errors: payload,
+      }
+    case CURRENT_USER:
+      return {
+        ...state,
+        load: false,
+        user: payload,
+        isAuth: true,
+        errors: payload,
       }
     case FAIL_USER:
-      return { ...state, loadUser: false, errors: payload }
+      return { ...state, load: false, errors: payload }
 
     case LOGOUT_USER:
-      localStorage.removeItem('token')
       return {
         user: {},
         isAuth: false,
-        loadUser: false,
-        errors: [],
+        load: false,
+        errors: payload,
       }
     default:
       return state
