@@ -6,16 +6,19 @@ export const cartAdd = (id, qty) => async (dispatch, getState) => {
   dispatch({
     type: CART_ADD,
     payload: {
-      game: data._id,
-      name: data.title,
-      image: data.image,
-      price: data.price,
+      game: data.game._id,
+      name: data.game.title,
+      image: data.game.image,
+      price: data.game.price,
       qty,
     },
   })
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
-
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : []
+export const cartRemove = (id) => async (dispatch, getState) => {
+  dispatch({
+    type: CART_REMOVE,
+    payload: id,
+  })
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}

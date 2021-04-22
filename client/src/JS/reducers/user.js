@@ -26,7 +26,6 @@ const userReducer = (state = initialState, { type, payload }) => {
         load: false,
         user: payload.user,
         isAuth: true,
-        errors: payload,
       }
 
     case SIGNIN_USER:
@@ -36,7 +35,6 @@ const userReducer = (state = initialState, { type, payload }) => {
         load: false,
         user: payload.user,
         isAuth: true,
-        errors: payload,
       }
     case CURRENT_USER:
       return {
@@ -44,7 +42,6 @@ const userReducer = (state = initialState, { type, payload }) => {
         load: false,
         user: payload,
         isAuth: true,
-        errors: payload,
       }
     case FAIL_USER:
       return { ...state, load: false, errors: payload }

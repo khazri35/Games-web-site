@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Errors from './pages/Errors'
-import LandPage from './pages/LandPage'
+import Homescreen from './pages/Homescreen/Homescreen'
 
 import Footer from './Components/Footer/Footer'
 import Header from './Components/Header/Header'
@@ -16,9 +16,13 @@ import PrivateRoute from './router/PrivateRoute'
 import { current } from './JS/actions/user'
 
 const App = () => {
+  const token = localStorage.getItem('token')
+
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(current())
+    if (token) {
+      dispatch(current())
+    }
   }, [dispatch])
 
   return (
@@ -27,7 +31,7 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Switch>
-            <Route exact path="/" component={LandPage} />
+            <Route exact path="/" component={Homescreen} />
             <Route path="/signin" component={Loginscreen} />
             <Route path="/signup" component={Registerscreen} />
             <PrivateRoute path="/profile" component={Profilescreen} />
