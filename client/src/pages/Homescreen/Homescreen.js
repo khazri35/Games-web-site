@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+// import './Homescreen.css'
 import { Row, Col } from 'react-bootstrap'
-import { getGames } from '../JS/actions/game'
-import GameCard from '../Components/GameCard/GameCard'
-import Loader from '../Components/Loader'
-import Message from '../Components/Message'
+import { getGames } from '../../JS/actions/game'
+import GameCard from '../../Components/GameCard/GameCard'
+import Loader from '../../Components/Loader'
+import Message from '../../Components/Message'
 
-const LandPage = () => {
+const Homescreen = () => {
   const dispatch = useDispatch()
   const listGames = useSelector((state) => state.gameReducer)
   const { load, errors, gameList } = listGames
@@ -17,6 +17,7 @@ const LandPage = () => {
 
   return (
     <>
+      <h1>Latest Games</h1>
       {load ? (
         <Loader />
       ) : errors ? (
@@ -24,7 +25,7 @@ const LandPage = () => {
       ) : (
         <Row>
           {gameList.map((game) => (
-            <Col key={game._id} sm={12} md={6} lg={4} xl={3}>
+            <Col className="col" key={game._id} sm={12} md={6} lg={4} xl={3}>
               <GameCard game={game} />
             </Col>
           ))}
@@ -34,4 +35,4 @@ const LandPage = () => {
   )
 }
 
-export default LandPage
+export default Homescreen

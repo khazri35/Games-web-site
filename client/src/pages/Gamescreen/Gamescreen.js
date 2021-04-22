@@ -1,31 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../../Components/Rating/Rating'
 import { getDetails } from '../../JS/actions/gamedetails'
 import Loader from '../../Components/Loader'
 import Message from '../../Components/Message'
 import Meta from '../../Components/Meta'
-import './Gamescreen.css'
 
 const Gamescreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
+
   const dispatch = useDispatch()
   const detailsGame = useSelector((state) => state.gamedetails)
   const { load, errors, gameDetails } = detailsGame
-  console.log(detailsGame)
+  const { isAuth } = useSelector((state) => state.userReducer)
   useEffect(() => {
     dispatch(getDetails(match.params.id))
   }, [dispatch, match])
 
   const addHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    {
+      isAuth
+        ? history.push(`/cart/${match.params.id}?qty=${qty}`)
+        : history.push('/signin')
+    }
   }
 
   return (
     <>
-      <Link className="btn btn-dark my-3 gamescreen" to="/">
+      <Link className="btn btn-dark my-3 " to="/">
         Go Back
       </Link>
       {load ? (
@@ -67,6 +71,24 @@ const Gamescreen = ({ history, match }) => {
                       <Col>Price:</Col>
                       <Col>
                         <strong>${gameDetails.price}</strong>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Qty</Col>
+                      <Col>
+                        <Form.Control
+                          as="select"
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {[...Array(5).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </Form.Control>
                       </Col>
                     </Row>
                   </ListGroup.Item>

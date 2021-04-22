@@ -40,7 +40,7 @@ export const current = () => async (dispatch) => {
         Authorization: localStorage.getItem('token'),
       },
     }
-    const result = await axios.get('/api/user/current', config)
+    let result = await axios.get('/api/user/current', config)
     dispatch({ type: CURRENT_USER, payload: result.data })
   } catch (error) {
     error.response.data.errors.map((el) => alert(el.msg))

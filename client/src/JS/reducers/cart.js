@@ -1,31 +1,29 @@
 import { CART_ADD, CART_REMOVE } from '../actionTypes/cart'
 
-const initialState = {
-  cartItems: [],
-  cart: {},
-}
-
-const cartAdd = (state = initialState, { type, payload }) => {
-  switch (type) {
+const cartReducer = (state = { cartItems: [] }, action) => {
+  switch (action.type) {
     case CART_ADD:
-      const item = payload
-      const existGame = state.cartItems.find((x) => x.game === item.game)
+      const item = action.payload
+      const existItem = state.cartItems.find((x) => x.game === item.game)
 
-      if (existGame) {
+      if (existItem) {
         return {
           ...state,
           cartItems: state.cartItems.map((x) =>
-            x.game === existGame.game ? item : x
+            x.game === existItem.game ? item : x
           ),
         }
       } else {
         return { ...state, cartItems: [...state.cartItems, item] }
       }
     case CART_REMOVE:
-      return {}
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((x) => x.game !== action.payload),
+      }
     default:
       return state
   }
 }
 
-export default cartAdd
+export default cartReducer
