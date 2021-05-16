@@ -1,6 +1,6 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import './Header.css'
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import "./Header.css";
 import {
   Navbar,
   Nav,
@@ -9,19 +9,19 @@ import {
   Form,
   FormControl,
   Button,
-} from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-import { logout } from '../../JS/actions/user'
+} from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { logout } from "../../JS/actions/user";
 
 const Header = () => {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.userReducer.user)
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
   // const { isAuth } = useSelector((state) => state.userReducer)
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   const logoutHandler = () => {
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
 
   return (
     <header>
@@ -42,11 +42,22 @@ const Header = () => {
                   <i className="fas fa-shopping-cart"></i> Cart
                 </Nav.Link>
               </LinkContainer>
-              {token ? (
+              {token !== "undefined" ? (
                 <NavDropdown title={user.name} id="username">
+                  {user.isAdmin == true ? (
+                    <LinkContainer to="/profileAdmin">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                  ) : (
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                  )}
+                  {/* //{" "}
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
+                    // <NavDropdown.Item>Profile</NavDropdown.Item>
+                    //{" "}
+                  </LinkContainer> */}
                   <LinkContainer to="/">
                     <NavDropdown.Item onClick={logoutHandler}>
                       Logout
@@ -65,7 +76,7 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
