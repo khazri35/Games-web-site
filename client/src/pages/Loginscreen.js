@@ -1,3 +1,4 @@
+// <<<<<<< Updated upstream
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -6,17 +7,17 @@ import { signin } from '../JS/actions/user'
 import FormContainer from '../Components/FormContainer'
 
 const Loginscreen = ({ history }) => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
-  }
-  const dispatch = useDispatch()
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
-    e.preventDefault()
-    dispatch(signin(user, history))
-  }
+    e.preventDefault();
+    dispatch(signin(user, history));
+  };
 
   return (
     <FormContainer>
@@ -53,7 +54,7 @@ const Loginscreen = ({ history }) => {
         </Col>
       </Row>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default Loginscreen
+export default Loginscreen;

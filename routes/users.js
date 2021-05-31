@@ -1,10 +1,10 @@
 // require express
-const express = require('express')
+const express = require("express");
 // express router
-const router = express.Router()
+const router = express.Router();
 // require controllers
-const { Signup, SignIn } = require('../controllers/user.controllers')
-const isAuth = require('../middlewares/isAuth')
+const { Signup, SignIn } = require("../controllers/user.controllers");
+const isAuth = require("../middlewares/isAuth");
 const {
   registerValidation,
   validations,
@@ -49,13 +49,13 @@ router.delete('/:id', controller.deleteuser)
 router.put('/:id', controller.updateuser)
 
 // sign up
-router.post('/signup', registerValidation(), validations, Signup)
+router.post("/signup", registerValidation(), validations, Signup);
 // sign in
-router.post('/signin', signinValidation(), validations, SignIn)
+router.post("/signin", signinValidation(), validations, SignIn);
 
 // current user
-router.get('/current', isAuth, (req, res) => {
-  res.send(req.user)
-})
+router.get("/current", isAuth, (req, res) => {
+  res.send(req.user);
+});
 
-module.exports = router
+module.exports = router;

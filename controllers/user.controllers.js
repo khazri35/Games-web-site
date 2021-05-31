@@ -1,9 +1,9 @@
 // require model User
-const User = require('../models/User')
+const User = require("../models/User");
 
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 // const salt = bcrypt.genSaltSync(10)
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
 // signup
 
@@ -11,22 +11,21 @@ const Signup = async (req, res) => {
   try {
     //   req.body
     const { name, email, password } = req.body
-
     // check if the email is not found in the database
-    const foundUser = await User.findOne({ email })
+    const foundUser = await User.findOne({ email });
 
     if (foundUser) {
       return res.status(400).send({
-        errors: [{ msg: 'user already exist email should be unique' }],
-      })
+        errors: [{ msg: "user already exist email should be unique" }],
+      });
     }
 
     // hash the password
-    const saltRounds = 10
-    const hashedpassword = await bcrypt.hash(password, saltRounds)
+    const saltRounds = 10;
+    const hashedpassword = await bcrypt.hash(password, saltRounds);
     // const newuser
-    const newUser = new User({ ...req.body })
-    newUser.password = hashedpassword
+    const newUser = new User({ ...req.body });
+    newUser.password = hashedpassword;
 
     // create a key using json webtoken
     const token = jwt.sign(
@@ -35,33 +34,33 @@ const Signup = async (req, res) => {
       },
       process.env.SECRET_KEY,
       { expiresIn: 60 * 60 }
-    )
+    );
     //then we save it in the database
-    await newUser.save()
-    res.status(200).send({ msg: 'user saved succ', user: newUser, token })
+    await newUser.save();
+    res.status(200).send({ msg: "user saved succ", user: newUser, token });
   } catch (error) {
-    console.log(error)
-    res.status(400).send({ errors: [{ msg: 'can not save the user' }] })
+    console.log(error);
+    res.status(400).send({ errors: [{ msg: "can not save the user" }] });
   }
-}
+};
 // signin
 const SignIn = async (req, res) => {
   try {
     // get the req.body
-    const { email, password } = req.body
+    const { email, password } = req.body;
     // seach if the user exist
-    const foundUser = await User.findOne({ email })
+    const foundUser = await User.findOne({ email });
 
     // send an error if he didnt exist
     if (!foundUser) {
-      return res.status(400).send({ errors: [{ msg: 'Bad Credential' }] })
+      return res.status(400).send({ errors: [{ msg: "Bad Credential" }] });
     }
     // check if the send it password is equal to the current Password
-    const hashedpass = foundUser.password
-    const result = await bcrypt.compare(password, hashedpass)
+    const hashedpass = foundUser.password;
+    const result = await bcrypt.compare(password, hashedpass);
     if (!result) {
-      res.status(400).send({ errors: [{ msg: 'Bad Credential' }] })
-      return
+      res.status(400).send({ errors: [{ msg: "Bad Credential" }] });
+      return;
     }
     // else create a key
     const token = jwt.sign(
@@ -70,15 +69,15 @@ const SignIn = async (req, res) => {
       },
       process.env.SECRET_KEY,
       { expiresIn: 60 * 60 }
-    )
+    );
 
     // send the details + a key
-    res.status(200).send({ msg: 'auth success', user: foundUser, token })
+    res.status(200).send({ msg: "auth success", user: foundUser, token });
   } catch (error) {
-    console.log(error)
-    res.status(400).send({ errors: [{ msg: 'can not get the currentUser' }] })
+    console.log(error);
+    res.status(400).send({ errors: [{ msg: "can not get the currentUser" }] });
   }
-}
+};
 
 // add user
 const adduser = async (req, res) => {
@@ -163,4 +162,4 @@ module.exports = controllers = {
   updateuser,
   SignIn,
   Signup,
-}
+};

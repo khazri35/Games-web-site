@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const reviewSchema = new Schema(
   {
@@ -10,14 +10,14 @@ const reviewSchema = new Schema(
   {
     timestamps: true,
   }
-)
+);
 
 const gameSchema = new Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
+      required: false,
+      ref: "User",
     },
     title: {
       type: String,
@@ -37,17 +37,17 @@ const gameSchema = new Schema(
     },
     description: {
       type: String,
-      required: true,
+      required: false,
     },
     rating: {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
     reviews: [reviewSchema],
     numReviews: {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
     price: {
@@ -59,6 +59,6 @@ const gameSchema = new Schema(
   {
     timestamps: true,
   }
-)
+);
 
-module.exports = Game = mongoose.model('game', gameSchema)
+module.exports = Game = mongoose.model("game", gameSchema);
