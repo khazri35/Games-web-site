@@ -57,7 +57,7 @@ const ProfileAdmin = () => {
               Games Dashboard
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a
+            {/* <a
               href="/userlist"
               class="btn btn-warning"
               tabindex="-1"
@@ -66,7 +66,7 @@ const ProfileAdmin = () => {
               data-bs-toggle="button"
             >
               Users Dashboard
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
