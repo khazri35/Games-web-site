@@ -5,7 +5,7 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { cartAdd, cartRemove } from '../JS/actions/cart'
 import Message from '../Components/Message'
 
-const Cartscreen = ({ match, location, history }) => {
+const Cartscreen = ({ match, location }) => {
   const gameId = match.params.id
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
+import PrivateRoute from './router/PrivateRoute'
+
 import { Container } from 'react-bootstrap'
 import Errors from './pages/Errors'
 import Homescreen from './pages/Homescreen/Homescreen'
@@ -12,8 +14,9 @@ import Cartscreen from './pages/Cartscreen'
 import Loginscreen from './pages/Loginscreen'
 import Registerscreen from './pages/Registerscreen'
 import Profilescreen from './pages/Profilescreen'
-import PrivateRoute from './router/PrivateRoute'
+
 import { current } from './JS/actions/user'
+import SearchBox from './Components/SearchBox'
 
 const App = () => {
   const token = localStorage.getItem('token')
@@ -23,7 +26,7 @@ const App = () => {
     if (token) {
       dispatch(current())
     }
-  }, [dispatch])
+  }, [dispatch, token])
 
   return (
     <>
@@ -31,12 +34,13 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Switch>
-            <Route exact path="/" component={Homescreen} />
             <Route path="/signin" component={Loginscreen} />
             <Route path="/signup" component={Registerscreen} />
-            <PrivateRoute path="/profile" component={Profilescreen} />
+            <PrivateRoute exact path="/profile" component={Profilescreen} />
             <Route path="/game/:id" component={Gamescreen} />
             <Route path="/cart/:id?" component={Cartscreen} />
+            <Route exact path="/" component={Homescreen} />
+            <Route path="/search/:keyword" component={SearchBox} />
             <Route path="/*" component={Errors} />
           </Switch>
         </Container>

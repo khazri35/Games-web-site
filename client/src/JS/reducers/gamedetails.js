@@ -7,7 +7,7 @@ import {
 const initialState = {
   gameDetails: { reviews: [] },
   load: false,
-  errors: null,
+  error: null,
 }
 
 const gamedetails = (state = initialState, { type, payload }) => {
@@ -19,7 +19,7 @@ const gamedetails = (state = initialState, { type, payload }) => {
       return { ...state, load: false, gameDetails: payload.game }
 
     case FAIL_DETAILS:
-      return { ...state, load: false, errors: payload }
+      return { ...state, load: false, error: payload }
 
     default:
       return state

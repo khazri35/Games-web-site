@@ -15,10 +15,10 @@ const dbConnect = require('./config/connectDB')
 dbConnect()
 
 // middleware morgan
-app.use(morgan('common'))
+app.use(morgan('dev'))
 // middleware global body parse
 app.use(express.json())
-// route
+
 app.use('/api/game', require('./routes/games'))
 app.use('/api/user', require('./routes/users'))
 

@@ -5,6 +5,7 @@ const router = express.Router()
 // require controllers
 const { Signup, SignIn } = require('../controllers/user.controllers')
 const isAuth = require('../middlewares/isAuth')
+
 const {
   registerValidation,
   validations,
@@ -32,6 +33,7 @@ router.get('/', controller.getusers)
 // @description get one user
 // @path http://localhost:5000/api/user/:id
 // @data params _id
+
 // router.get('/:id', controller.getuser)
 
 //delete user
@@ -50,6 +52,7 @@ router.put('/:id', controller.updateuser)
 
 // sign up
 router.post('/signup', registerValidation(), validations, Signup)
+
 // sign in
 router.post('/signin', signinValidation(), validations, SignIn)
 

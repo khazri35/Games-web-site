@@ -11,7 +11,7 @@ const initialState = {
   user: {},
   isAuth: false,
   load: false,
-  errors: [],
+  error: null,
 }
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -24,7 +24,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         load: false,
-        user: payload.user,
+        user: payload,
         isAuth: true,
       }
 
@@ -33,7 +33,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         load: false,
-        user: payload.user,
+        user: payload,
         isAuth: true,
       }
     case CURRENT_USER:
@@ -44,14 +44,14 @@ const userReducer = (state = initialState, { type, payload }) => {
         isAuth: true,
       }
     case FAIL_USER:
-      return { ...state, load: false, errors: payload }
+      return { ...state, load: false, error: payload }
 
     case LOGOUT_USER:
       return {
         user: {},
         isAuth: false,
         load: false,
-        errors: payload,
+        error: payload,
       }
     default:
       return state

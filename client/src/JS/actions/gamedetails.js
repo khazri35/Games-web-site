@@ -17,7 +17,10 @@ export const getDetails = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: FAIL_DETAILS,
-      payload: error.response,
+      payload:
+        error.response && error.respose.data.message
+          ? error.response.data.message
+          : error.message,
     })
   }
 }

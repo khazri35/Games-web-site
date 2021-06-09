@@ -6,22 +6,24 @@ import { getGames } from '../../JS/actions/game'
 import GameCard from '../../Components/GameCard/GameCard'
 import Loader from '../../Components/Loader'
 import Message from '../../Components/Message'
+import Slider from '../../Components/Slider'
 
-const Homescreen = () => {
+const Homescreen = ({ match }) => {
+  const keyword = match.params.keyword
   const dispatch = useDispatch()
   const listGames = useSelector((state) => state.gameReducer)
-  const { load, errors, gameList } = listGames
+  const { load, error, gameList } = listGames
   useEffect(() => {
-    dispatch(getGames())
-  }, [dispatch])
+    dispatch(getGames(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>
-      <h1>Latest Games</h1>
+      <h1>New Games</h1>
       {load ? (
         <Loader />
-      ) : errors ? (
-        <Message variant="danger">{errors}</Message>
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
       ) : (
         <Row>
           {gameList.map((game) => (

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-// import Message from '../Components/Message'
-// import Loader from '../Components/Loader'
+import Message from '../Components/Message'
+import Loader from '../Components/Loader'
 import { signup } from '../JS/actions/user'
 import FormContainer from '../Components/FormContainer'
 
 const Registerscreen = ({ history }) => {
   const [newUser, setNewUser] = useState({})
+
+  const { load } = useSelector((state) => state.userReducer)
 
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value })
@@ -23,6 +25,7 @@ const Registerscreen = ({ history }) => {
   return (
     <FormContainer>
       <h1>Sign UP</h1>
+      {load && <Loader />}
       <Form>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>

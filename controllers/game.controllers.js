@@ -25,7 +25,16 @@ const addgame = async (req, res) => {
 
 const getgames = async (req, res) => {
   try {
-    const result = await Game.find({})
+    const keyword = req.query.keyword
+      ? {
+          title: {
+            $regex: req.query.keyword,
+            $options: 'i',
+          },
+        }
+      : {}
+    const result = await Game.find({ ...keyword })
+
     res.status(200).send({ message: 'get all games', games: result })
   } catch (error) {
     res.status(404).send({ message: 'can not get games' })

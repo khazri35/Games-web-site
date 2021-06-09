@@ -13,7 +13,8 @@ const Gamescreen = ({ history, match }) => {
 
   const dispatch = useDispatch()
   const detailsGame = useSelector((state) => state.gamedetails)
-  const { load, errors, gameDetails } = detailsGame
+  const { load, error, gameDetails } = detailsGame
+
   const { isAuth } = useSelector((state) => state.userReducer)
   useEffect(() => {
     dispatch(getDetails(match.params.id))
@@ -34,8 +35,8 @@ const Gamescreen = ({ history, match }) => {
       </Link>
       {load ? (
         <Loader />
-      ) : errors ? (
-        <Message variant="danger">{errors}</Message>
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
       ) : (
         <>
           <Meta title={gameDetails.title} />
